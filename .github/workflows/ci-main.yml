@@ -1,0 +1,29 @@
+name: CI de Portafolio Astro
+
+on:
+  pull_request:
+    branches: [ main ] # Se ejecuta al abrir un PR de dev a main
+  push:
+    branches: [ main ] # Se ejecuta cuando el merge se completa
+
+jobs:
+  calidad-codigo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Instalación de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Validar Astro (Check)
+        run: npm run astro check # Verifica errores de tipos y sintaxis
+
+      - name: Validar Build de producción
+        run: npm run build # Asegura que Tailwind y Astro compilan sin errores
