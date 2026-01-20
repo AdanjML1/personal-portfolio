@@ -1,0 +1,258 @@
+---
+// Componente de carrusel de tecnologías con logos SVG de simple-icons
+import * as simpleIcons from 'simple-icons';
+
+const technologies = [
+  { 
+    name: 'JavaScript', 
+    icon: simpleIcons.siJavascript,
+    slug: 'javascript'
+  },
+  { 
+    name: 'TypeScript', 
+    icon: simpleIcons.siTypescript,
+    slug: 'typescript'
+  },
+  { 
+    name: 'React', 
+    icon: simpleIcons.siReact,
+    slug: 'react'
+  },
+  { 
+    name: 'Next.js', 
+    icon: simpleIcons.siNextdotjs,
+    slug: 'nextdotjs'
+  },
+  { 
+    name: 'Node.js', 
+    icon: simpleIcons.siNodedotjs,
+    slug: 'nodedotjs'
+  },
+  { 
+    name: 'MySQL', 
+    icon: simpleIcons.siMysql,
+    slug: 'mysql'
+  },
+  { 
+    name: 'PostgreSQL', 
+    icon: simpleIcons.siPostgresql,
+    slug: 'postgresql'
+  },
+  { 
+    name: 'SQL Server', 
+    icon: simpleIcons.siSqlite,
+    slug: 'sqlite',
+    customColor: '#CC2927'
+  },
+  { 
+    name: 'Docker', 
+    icon: simpleIcons.siDocker,
+    slug: 'docker'
+  },
+  { 
+    name: 'Git', 
+    icon: simpleIcons.siGit,
+    slug: 'git'
+  },
+];
+---
+
+<div class="tech-carousel-container">
+  <div class="tech-carousel">
+    <div class="tech-carousel-track">
+      <!-- Primera pasada -->
+      {technologies.map((tech) => {
+        const color = tech.customColor || `#${tech.icon.hex}`;
+        const bgColor = tech.customColor ? `${tech.customColor}20` : `#${tech.icon.hex}20`;
+        return (
+          <div 
+            class="tech-item"
+            style={`--tech-color: ${color}; --tech-bg: ${bgColor}`}
+          >
+            <div 
+              class="tech-icon"
+              set:html={tech.icon.svg}
+              style={`fill: ${color}`}
+            />
+            <span class="tech-name">{tech.name}</span>
+          </div>
+        );
+      })}
+      <!-- Segunda pasada (para efecto infinito) -->
+      {technologies.map((tech) => {
+        const color = tech.customColor || `#${tech.icon.hex}`;
+        const bgColor = tech.customColor ? `${tech.customColor}20` : `#${tech.icon.hex}20`;
+        return (
+          <div 
+            class="tech-item"
+            style={`--tech-color: ${color}; --tech-bg: ${bgColor}`}
+          >
+            <div 
+              class="tech-icon"
+              set:html={tech.icon.svg}
+              style={`fill: ${color}`}
+            />
+            <span class="tech-name">{tech.name}</span>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<style>
+  .tech-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    position: relative;
+  }
+
+  .tech-carousel-container::before,
+  .tech-carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .tech-carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--sl-color-bg), transparent);
+  }
+
+  .tech-carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--sl-color-bg), transparent);
+  }
+
+  .tech-carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tech-carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: scroll 40s linear infinite;
+    width: fit-content;
+  }
+
+  .tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-width: 140px;
+    padding: 1.25rem 1rem;
+    background: var(--tech-bg, var(--sl-color-bg));
+    border: 2px solid var(--tech-color, var(--sl-color-accent));
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .tech-item:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--tech-color);
+  }
+
+  .tech-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sl-color-bg);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .tech-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .tech-item:hover .tech-icon {
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .tech-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--sl-color-text);
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Pausar animación al hacer hover */
+  .tech-carousel-container:hover .tech-carousel-track {
+    animation-play-state: paused;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .tech-item {
+      min-width: 120px;
+      padding: 1rem 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .tech-icon {
+      width: 48px;
+      height: 48px;
+      font-size: 1.5rem;
+    }
+
+    .tech-name {
+      font-size: 0.85rem;
+    }
+
+    .tech-carousel-track {
+      gap: 1.25rem;
+    }
+
+    .tech-carousel-container::before,
+    .tech-carousel-container::after {
+      width: 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tech-item {
+      min-width: 100px;
+      padding: 0.875rem 0.5rem;
+    }
+
+    .tech-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 1.25rem;
+    }
+
+    .tech-name {
+      font-size: 0.75rem;
+    }
+  }
+</style>

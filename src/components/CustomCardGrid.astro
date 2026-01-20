@@ -1,0 +1,13 @@
+---
+import { CardGrid } from '@astrojs/starlight/components';
+
+interface Props {
+  children: any;
+}
+
+const { children } = Astro.props;
+---
+
+<CardGrid stagger>
+  <slot />
+</CardGrid>

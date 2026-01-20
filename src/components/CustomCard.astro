@@ -1,0 +1,190 @@
+---
+import { Card } from '@astrojs/starlight/components';
+
+interface Props {
+  title: string;
+  icon: string;
+  cardType: 'frontend' | 'backend' | 'database' | 'devops';
+  children: any;
+}
+
+const { title, icon, cardType, children } = Astro.props;
+
+const colorMap = {
+  frontend: {
+    color: '#61DAFB',
+    bgColor: '#61DAFB20',
+    gradient: 'linear-gradient(135deg, #61DAFB20, #3178C620)',
+    shadow: 'rgba(97, 218, 251, 0.2)'
+  },
+  backend: {
+    color: '#339933',
+    bgColor: '#33993320',
+    gradient: 'linear-gradient(135deg, #33993320, #68A06320)',
+    shadow: 'rgba(51, 153, 51, 0.2)'
+  },
+  database: {
+    color: '#F7DF1E',
+    bgColor: '#F7DF1E20',
+    gradient: 'linear-gradient(135deg, #F7DF1E20, #F0C41920)',
+    shadow: 'rgba(247, 223, 30, 0.2)'
+  },
+  devops: {
+    color: '#DC2626',
+    bgColor: '#DC262620',
+    gradient: 'linear-gradient(135deg, #DC262620, #EF444420)',
+    shadow: 'rgba(220, 38, 38, 0.2)'
+  }
+};
+
+const colors = colorMap[cardType];
+---
+
+<div class={`custom-card-wrapper card-${cardType}`} data-card-type={cardType} style={`--card-color: ${colors.color}; --card-bg: ${colors.bgColor}; --icon-bg: ${colors.bgColor}; --icon-border: ${colors.color}`}>
+  <Card title={title} icon={icon as any}>
+    {children}
+  </Card>
+</div>
+
+<script is:inline>
+  // Aplicar estilos al contenedor del icono después de que se renderice
+  (function() {
+    function applyIconColors() {
+      const wrappers = document.querySelectorAll('[data-card-type]');
+      wrappers.forEach((wrapper) => {
+        const cardType = wrapper.getAttribute('data-card-type');
+        const article = wrapper.querySelector('article');
+        if (!article) return;
+        
+        // Buscar el header o contenedor del icono
+        const header = article.querySelector('header');
+        if (header) {
+          const colorMap = {
+            frontend: { bg: '#61DAFB20', border: '#61DAFB' },
+            backend: { bg: '#33993320', border: '#339933' },
+            database: { bg: '#F7DF1E20', border: '#F7DF1E' },
+            devops: { bg: '#DC262620', border: '#DC2626' }
+          };
+          
+          const colors = colorMap[cardType];
+          if (colors) {
+            header.style.backgroundColor = colors.bg;
+            header.style.border = `2px solid ${colors.border}`;
+            header.style.borderRadius = '8px';
+            header.style.padding = '8px';
+          }
+        }
+      });
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyIconColors);
+    } else {
+      applyIconColors();
+    }
+    
+    // También aplicar después de un pequeño delay para asegurar que Starlight haya renderizado
+    setTimeout(applyIconColors, 100);
+  })();
+</script>
+
+<style>
+  .custom-card-wrapper {
+    transition: all 0.3s ease;
+    --card-color: #61DAFB;
+    --card-bg: #61DAFB20;
+  }
+
+  .custom-card-wrapper :global(article) {
+    transition: all 0.3s ease !important;
+    border-radius: 10px !important;
+    overflow: hidden;
+  }
+
+  /* Colores del contenedor del icono usando variables CSS */
+  .card-frontend {
+    --icon-bg: #61DAFB20;
+    --icon-border: #61DAFB;
+  }
+
+  .card-backend {
+    --icon-bg: #33993320;
+    --icon-border: #339933;
+  }
+
+  .card-database {
+    --icon-bg: #F7DF1E20;
+    --icon-border: #F7DF1E;
+  }
+
+  .card-devops {
+    --icon-bg: #DC262620;
+    --icon-border: #DC2626;
+  }
+
+  /* Aplicar colores al contenedor del icono - múltiples selectores para cubrir diferentes estructuras */
+  .card-frontend :global(article header),
+  .card-frontend :global(article header > *),
+  .card-frontend :global(article [class*="icon"]),
+  .card-frontend :global(article > div:first-child) {
+    background-color: var(--icon-bg, #61DAFB20) !important;
+    border: 2px solid var(--icon-border, #61DAFB) !important;
+    border-radius: 8px !important;
+  }
+
+  .card-backend :global(article header),
+  .card-backend :global(article header > *),
+  .card-backend :global(article [class*="icon"]),
+  .card-backend :global(article > div:first-child) {
+    background-color: var(--icon-bg, #33993320) !important;
+    border: 2px solid var(--icon-border, #339933) !important;
+    border-radius: 8px !important;
+  }
+
+  .card-database :global(article header),
+  .card-database :global(article header > *),
+  .card-database :global(article [class*="icon"]),
+  .card-database :global(article > div:first-child) {
+    background-color: var(--icon-bg, #F7DF1E20) !important;
+    border: 2px solid var(--icon-border, #F7DF1E) !important;
+    border-radius: 8px !important;
+  }
+
+  .card-devops :global(article header),
+  .card-devops :global(article header > *),
+  .card-devops :global(article [class*="icon"]),
+  .card-devops :global(article > div:first-child) {
+    background-color: var(--icon-bg, #DC262620) !important;
+    border: 2px solid var(--icon-border, #DC2626) !important;
+    border-radius: 8px !important;
+  }
+
+  /* Hover effects - usando el mismo color del icono */
+  .card-frontend :global(article:hover) {
+    background: linear-gradient(135deg, #61DAFB20, #3178C620) !important;
+    border-color: #61DAFB !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(97, 218, 251, 0.2) !important;
+  }
+
+  .card-backend :global(article:hover) {
+    background: linear-gradient(135deg, #33993320, #68A06320) !important;
+    border-color: #339933 !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(51, 153, 51, 0.2) !important;
+  }
+
+  .card-database :global(article:hover) {
+    background: linear-gradient(135deg, #F7DF1E20, #F0C41920) !important;
+    border-color: #F7DF1E !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(247, 223, 30, 0.2) !important;
+  }
+
+  .card-devops :global(article:hover) {
+    background: linear-gradient(135deg, #DC262620, #EF444420) !important;
+    border-color: #DC2626 !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.2) !important;
+  }
+</style>
