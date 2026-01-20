@@ -1,40 +1,59 @@
 ---
-title: Welcome to my portfolio
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+title: Adan - Full Stack Developer
+description: Portafolio de Adan - Desarrollador Full Stack Jr especializado en JavaScript, React, Node.js y TypeScript
+template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Full Stack Developer Jr | JavaScript | React | Node.js | TypeScript
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Sobre Mí
+      link: /sobre-mi/
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: Ver Proyectos
+      link: /proyectos/
+      icon: right-arrow
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import TechCarousel from '../../components/TechCarousel.astro';
+import CustomCardGrid from '../../components/CustomCardGrid.astro';
+import CustomCard from '../../components/CustomCard.astro';
 
-## Next steps
+## 👋 ¡Hola! Soy Adan
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid>
+Desarrollador Full Stack Jr con experiencia en el desarrollo de aplicaciones web modernas. Trabajo con **JavaScript** y **TypeScript**, utilizando **React** y **Next.js** para frontend y **Node.js** para backend.
+
+## 🚀 Lo que hago
+
+<CustomCardGrid>
+	<CustomCard title="Frontend Development" icon="pencil" cardType="frontend">
+		Desarrollo interfaces modernas y responsivas con React, Next.js y TypeScript, enfocándome en la experiencia de usuario.
+	</CustomCard>
+	<CustomCard title="Backend Development" icon="setting" cardType="backend">
+		Creación de APIs RESTful con Node.js, manejo de bases de datos y arquitectura de servidores.
+	</CustomCard>
+	<CustomCard title="Bases de Datos" icon="document" cardType="database">
+		Experiencia con MySQL, PostgreSQL y SQL Server para el almacenamiento y gestión de datos.
+	</CustomCard>
+	<CustomCard title="DevOps" icon="rocket" cardType="devops">
+		Despliegue de aplicaciones con Docker y control de versiones con Git, siguiendo buenas prácticas de desarrollo.
+	</CustomCard>
+</CustomCardGrid>
+
+## 💼 Experiencia
+
+He trabajado en empresas como:
+- **Universidad Aztlán Campus Cancún**
+- **Autocar Cancún**
+- **Pais a Dreams**
+
+Actualmente resido en **Cancún, Quintana Roo**, después de haber estudiado en **Izamal, Yucatán** en la **Universidad Tecnológica del Centro**.
+
+## 🛠️ Tecnologías
+
+<TechCarousel />
+
+---
+
+¿Quieres conocer más sobre mi experiencia y proyectos? Explora las secciones del menú o [contáctame](/contacto/) directamente.

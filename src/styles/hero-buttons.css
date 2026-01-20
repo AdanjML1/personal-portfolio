@@ -1,0 +1,167 @@
+/* Estilos para botones del hero */
+.sl-hero-actions a,
+.sl-hero-actions .sl-link {
+  font-size: 0.7rem !important;
+  padding: 0.35rem 0.7rem !important;
+}
+
+/* Ocultar "On this page" (tabla de contenidos) */
+.sl-sidebar-toc,
+[class*="sidebar-toc"],
+[class*="toc"],
+aside[aria-label*="On this page"],
+aside[aria-label*="En esta página"] {
+  display: none !important;
+}
+
+/* Estilizar el contenido principal */
+.sl-markdown-content,
+main article,
+main .content {
+  line-height: 1.7 !important;
+  color: var(--sl-color-text) !important;
+  text-align: left !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+}
+
+/* Contenedor principal - alinear a la izquierda */
+main,
+.sl-content-panel,
+[class*="content-panel"],
+.sl-page,
+[class*="page"] {
+  text-align: left !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding-left: 0 !important;
+}
+
+/* Títulos alineados a la izquierda */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+main article h1,
+main article h2,
+main article h3 {
+  text-align: left !important;
+}
+
+/* Mejorar títulos */
+.sl-markdown-content h1,
+main article h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1.5rem !important;
+  line-height: 1.2 !important;
+  color: var(--sl-color-text) !important;
+}
+
+.sl-markdown-content h2,
+main article h2 {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.3 !important;
+  color: var(--sl-color-text) !important;
+  border-bottom: 2px solid var(--sl-color-accent-low) !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.sl-markdown-content h3,
+main article h3 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  color: var(--sl-color-text) !important;
+}
+
+/* Mejorar párrafos */
+.sl-markdown-content p,
+main article p {
+  margin-bottom: 1.25rem !important;
+  line-height: 1.8 !important;
+  font-size: 1rem !important;
+}
+
+/* Mejorar listas */
+.sl-markdown-content ul,
+.sl-markdown-content ol,
+main article ul,
+main article ol {
+  margin-bottom: 1.5rem !important;
+  padding-left: 1.5rem !important;
+  line-height: 1.8 !important;
+}
+
+.sl-markdown-content li,
+main article li {
+  margin-bottom: 0.5rem !important;
+  line-height: 1.8 !important;
+}
+
+/* Mejorar enlaces */
+.sl-markdown-content a,
+main article a {
+  color: var(--sl-color-accent) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.sl-markdown-content a:hover,
+main article a:hover {
+  color: var(--sl-color-accent-high) !important;
+  border-bottom-color: var(--sl-color-accent) !important;
+}
+
+/* Mejorar código inline */
+.sl-markdown-content code:not(pre code),
+main article code:not(pre code) {
+  background: var(--sl-color-accent-low) !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+  font-family: 'Fira Code', 'Consolas', monospace !important;
+}
+
+/* Mejorar bloques de código */
+.sl-markdown-content pre,
+main article pre {
+  background: var(--sl-color-accent-low) !important;
+  border-radius: 8px !important;
+  padding: 1.25rem !important;
+  overflow-x: auto !important;
+  margin-bottom: 1.5rem !important;
+  border: 1px solid var(--sl-color-accent) !important;
+}
+
+/* Mejorar separadores */
+.sl-markdown-content hr,
+main article hr {
+  border: none !important;
+  border-top: 2px solid var(--sl-color-accent-low) !important;
+  margin: 2rem 0 !important;
+}
+
+/* Mejorar texto en negrita */
+.sl-markdown-content strong,
+main article strong {
+  font-weight: 600 !important;
+  color: var(--sl-color-text) !important;
+}
+
+/* Espaciado general mejorado */
+.sl-markdown-content > *:first-child,
+main article > *:first-child {
+  margin-top: 0 !important;
+}
+
+.sl-markdown-content > *:last-child,
+main article > *:last-child {
+  margin-bottom: 0 !important;
+}

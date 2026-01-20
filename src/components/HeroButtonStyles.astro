@@ -1,0 +1,87 @@
+---
+// Componente para estilizar los botones del hero
+---
+
+<style>
+  /* Reducir tamaño de los botones del hero - selectores más específicos */
+  :global(.sl-hero .sl-hero-actions) {
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    margin-top: 1rem !important;
+  }
+
+  :global(.sl-hero .sl-hero-actions a),
+  :global(.sl-hero .sl-hero-actions .sl-link) {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.7rem !important;
+    min-height: auto !important;
+    line-height: 1.2 !important;
+    height: auto !important;
+    border-radius: 6px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+
+  :global(.sl-hero .sl-hero-actions a[data-variant="primary"]),
+  :global(.sl-hero .sl-hero-actions .sl-link[data-variant="primary"]) {
+    font-size: 0.7rem !important;
+    padding: 0.35rem 0.7rem !important;
+    height: auto !important;
+  }
+
+  :global(.sl-hero .sl-hero-actions a svg),
+  :global(.sl-hero .sl-hero-actions .sl-link svg) {
+    width: 0.65rem !important;
+    height: 0.65rem !important;
+    margin-left: 0.25rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  :global(.sl-hero .sl-hero-actions a .sl-link-icon),
+  :global(.sl-hero .sl-hero-actions .sl-link .sl-link-icon) {
+    width: 0.65rem !important;
+    height: 0.65rem !important;
+  }
+
+  /* Reducir también el tamaño del texto dentro del botón */
+  :global(.sl-hero .sl-hero-actions a span),
+  :global(.sl-hero .sl-hero-actions .sl-link span) {
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
+  }
+</style>
+
+<script is:inline>
+  // Aplicar estilos directamente si los CSS no funcionan
+  (function() {
+    function applyButtonStyles() {
+      const heroActions = document.querySelector('.sl-hero-actions');
+      if (heroActions) {
+        const links = heroActions.querySelectorAll('a, .sl-link');
+        links.forEach(link => {
+          link.style.fontSize = '0.7rem';
+          link.style.padding = '0.35rem 0.7rem';
+          link.style.minHeight = 'auto';
+          link.style.height = 'auto';
+          link.style.lineHeight = '1.2';
+          link.style.borderRadius = '6px';
+          
+          const svg = link.querySelector('svg');
+          if (svg) {
+            svg.style.width = '0.65rem';
+            svg.style.height = '0.65rem';
+          }
+        });
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', applyButtonStyles);
+    } else {
+      applyButtonStyles();
+    }
+    
+    setTimeout(applyButtonStyles, 100);
+    setTimeout(applyButtonStyles, 500);
+  })();
+</script>
